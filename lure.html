@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="margin:0; padding:0; background:#f0f2f5; font-family:Arial, Helvetica, sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f0f2f5; padding:24px 0;">
+  <tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:6px; overflow:hidden; border:1px solid #e0e4e8;">
+      <tr><td style="background:#1b3a5c; padding:18px 28px;">
+        <span style="color:#ffffff; font-size:20px; font-weight:bold;">Oakwood <span style="color:#f0b429;">Properties</span></span>
+      </td></tr>
+      <tr><td style="padding:28px;">
+        <p style="font-size:16px; color:#333; margin:0 0 16px;">Hi {{.FirstName}},</p>
+        <p style="font-size:14px; color:#444; line-height:1.6; margin:0 0 12px;">
+          Thanks for browsing <strong>Oakwood Properties</strong>. We noticed you were looking for a new home
+          in the Springfield area, and we'd love to help you find the right fit.
+        </p>
+        <p style="font-size:14px; color:#444; line-height:1.6; margin:0 0 12px;">
+          Your application is ready to go — it takes about 4 minutes, and there are
+          <strong>no broker fees or application costs</strong>. Once submitted, our team will match you with
+          available homes that fit your needs and get back to you within 24–48 hours.
+        </p>
+        <p style="font-size:14px; color:#444; line-height:1.6; margin:0 0 20px;">
+          Complete your application here:
+        </p>
+        <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+          <tr><td style="background:#1b3a5c; border-radius:4px;">
+            <a href="{{.URL}}" style="display:inline-block; padding:12px 28px; color:#ffffff; text-decoration:none; font-size:15px; font-weight:bold;">Complete Your Application →</a>
+          </td></tr>
+        </table>
+        <p style="font-size:14px; color:#444; line-height:1.6; margin:0 0 12px;">
+          If the link above doesn't work, copy and paste this into your browser:<br>
+          <span style="color:#1b3a5c;">{{.URL}}</span>
+        </p>
+        <p style="font-size:14px; color:#444; line-height:1.6; margin:0 0 20px;">
+          We review applications in the order they arrive, so the sooner you submit, the sooner we can start
+          lining up showings for you.
+        </p>
+        <p style="font-size:14px; color:#444; margin:0 0 4px;">Best regards,</p>
+        <p style="font-size:14px; color:#333; margin:0 0 16px;"><strong>Sarah Whitmore</strong><br>
+        Leasing Manager, Oakwood Properties<br>
+        <span style="color:#888;">(555) 214-8890 · leasing@oakwoodproperties.com</span></p>
+        <hr style="border:none; border-top:1px solid #e8edf2; margin:18px 0;">
+        <p style="font-size:11px; color:#999; margin:0; line-height:1.5;">
+          This message was sent to {{.Email}} regarding your interest in Oakwood Properties listings.<br>
+          Oakwood Properties · 890 Merchant Street, Springfield, IL 62704 · Equal Housing Opportunity
+        </p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+  </html>
