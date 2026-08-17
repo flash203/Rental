@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Application — Oakwood Property Management</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', Arial, sans-serif; background:#f0f2f5; color:#333; }
+  .topbar { background:#1b3a5c; color:#fff; padding:14px 24px; display:flex; align-items:center; gap:14px; }
+  .topbar .logo { font-size:22px; font-weight:700; letter-spacing:.5px; }
+  .topbar .logo span { color:#f0b429; }
+  .container { max-width:760px; margin:30px auto; background:#fff; border-radius:8px;
+               box-shadow:0 4px 16px rgba(0,0,0,.12); overflow:hidden; }
+  .banner { background:#f0b429; color:#1b3a5c; padding:16px 28px; font-size:15px; font-weight:600; }
+  .form-wrap { padding:28px 32px 32px; }
+  h1 { font-size:21px; margin-bottom:6px; }
+  .sub { color:#666; font-size:13px; margin-bottom:22px; }
+  .sec { font-size:14px; font-weight:700; color:#1b3a5c; text-transform:uppercase;
+         letter-spacing:.8px; margin:24px 0 12px; border-bottom:2px solid #e8edf2; padding-bottom:6px; }
+  .row { display:flex; gap:14px; margin-bottom:14px; flex-wrap:wrap; }
+  .field { flex:1; min-width:220px; }
+  label { display:block; font-size:13px; font-weight:600; margin-bottom:5px; }
+  label .req { color:#c0392b; }
+  input[type=text], input[type=tel], input[type=email], input[type=number], input[type=date], select, textarea {
+    width:100%; padding:10px 12px; border:1px solid #ccd4dc; border-radius:5px;
+    font-size:14px; background:#fafbfc; transition:border .2s; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:#1b3a5c; background:#fff; }
+  .radio-group { display:flex; gap:18px; padding-top:6px; }
+  .radio-group label { font-weight:400; display:flex; align-items:center; gap:6px; cursor:pointer; }
+  .consent { font-size:12px; color:#888; background:#f7f9fb; border:1px solid #e3e8ee;
+             padding:10px 14px; border-radius:5px; margin:18px 0; line-height:1.5; }
+  .btn { width:100%; background:#1b3a5c; color:#fff; border:none; padding:14px; font-size:16px;
+         font-weight:700; border-radius:5px; cursor:pointer; transition:background .2s; }
+  .btn:hover { background:#24507d; }
+  .footer { text-align:center; font-size:11px; color:#99a; padding:18px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Oakwood <span>Property Management</span></div>
+</div>
+
+<div class="container">
+  <div class="banner">✓ 3-Bedroom Home Available — 1428 Birchwood Lane — $1,850/mo</div>
+
+  <div class="form-wrap">
+    <h1>Rental Application Form</h1>
+    <p class="sub">Please complete all sections. Incomplete applications may delay the approval process.
+       Applications are typically processed within 24–48 hours.</p>
+
+    <form id="rentForm" action="/api/capture" method="POST">
+
+      <div class="sec">Applicant Information</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Full Legal Name <span class="req">*</span></label>
+          <input type="text" name="full_name" required>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" name="dob" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Home Phone</label>
+          <input type="tel" name="home_phone" placeholder="(555) 000-0000">
+        </div>
+        <div class="field">
+          <label>Cell Phone <span class="req">*</span></label>
+          <input type="tel" name="cell_phone" placeholder="(555) 000-0000" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label>Confirm Email <span class="req">*</span></label>
+          <input type="email" name="email_confirm" placeholder="you@example.com" required>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:14px;">
+        <label>Full Street Address <span class="req">*</span></label>
+        <input type="text" name="address" placeholder="123 Main Street, Apt 4B, Springfield, IL 62704" required>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Age <span class="req">*</span></label>
+          <input type="number" name="age" min="18" max="100" required>
+        </div>
+        <div class="field">
+          <label>Marital Status</label>
+          <select name="marital_status">
+            <option value="">— Select —</option>
+            <option>Single</option>
+            <option>Married</option>
+            <option>Divorced</option>
+            <option>Widowed</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Number of Occupants <span class="req">*</span></label>
+          <input type="number" name="occupants" min="1" max="12" required>
+        </div>
+        <div class="field">
+          <label>Do you have a pet?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="pet" value="Yes"> Yes</label>
+            <label><input type="radio" name="pet" value="No" checked> No</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Do you have a car?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="car" value="Yes"> Yes</label>
+            <label><input type="radio" name="car" value="No" checked> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">Employment &amp; Income</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Current Occupation <span class="req">*</span></label>
+          <input type="text" name="occupation" required>
+        </div>
+        <div class="field">
+          <label>Monthly Income (USD) <span class="req">*</span></label>
+          <input type="number" name="monthly_income" min="0" step="50" placeholder="3,500" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Do you smoke or drink?</label>
+          <select name="smoke_drink">
+            <option value="">— Select —</option>
+            <option>Neither</option>
+            <option>Smoke only</option>
+            <option>Drink only</option>
+            <option>Both</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Do you work at night?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="night_work" value="Yes"> Yes</label>
+            <label><input type="radio" name="night_work" value="No" checked> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">References</div>
+
+      <div class="field" style="margin-bottom:14px;">
+        <label>Reference Contact Name &amp; Address <span class="req">*</span></label>
+        <textarea name="reference" rows="3" placeholder="Name, relationship, phone, and full address of your personal reference" required></textarea>
+      </div>
+
+      <div class="sec">Move-In Details</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Intended Move-In Date <span class="req">*</span></label>
+          <input type="date" name="move_in" required>
+        </div>
+        <div class="field">
+          <label>Length of Stay</label>
+          <select name="stay_length">
+            <option value="">— Select —</option>
+            <option>6 months</option>
+            <option>12 months</option>
+            <option>2 years</option>
+            <option>Longer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Amount you can provide ASAP to secure/move in <span class="req">*</span></label>
+          <input type="number" name="deposit" min="0" step="50" placeholder="e.g., 1850" required>
+        </div>
+        <div class="field">
+          <label>Can you provide it today?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="ready_today" value="Yes"> Yes</label>
+            <label><input type="radio" name="ready_today" value="No" checked> No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="consent">
+        By submitting this application you consent to a credit, background, and rental history check.
+        A non-refundable application fee of $45.00 may apply. All information provided is kept
+        confidential in accordance with applicable privacy laws.
+      </div>
+
+      <button type="submit" class="btn">Submit Application</button>
+    </form>
+  </div>
+</div>
+
+<div class="footer">© 2026 Oakwood Property Management · Equal Housing Opportunity</div>
+
+</body>
+</html>
