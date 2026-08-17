@@ -14,8 +14,6 @@ module.exports = async (req, res) => {
     return res.status(404).send('Not found');
   }
 
-  // Vercel auto-parses the form body into req.body.
-  // This fallback covers any case where it arrives as a raw string.
   let fields = {};
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
     fields = req.body;
@@ -26,6 +24,7 @@ module.exports = async (req, res) => {
   const get = (k) => (fields[k] !== undefined ? String(fields[k]).trim() : '');
 
   const data = {
+    selected_home:  get('selected_home'),
     full_name:      get('full_name'),
     dob:            get('dob'),
     email:          get('email'),
@@ -53,6 +52,7 @@ module.exports = async (req, res) => {
   const msg =
     '<b>📋 NEW RENT APPLICATION</b>\n' +
     '──────────────────\n' +
+    '🏠 Home option: ' + data.selected_home + '\n' +
     '👤 Name:        ' + data.full_name + '\n' +
     '📅 DOB:         ' + data.dob + ' (age ' + data.age + ')\n' +
     '📧 Email:       ' + data.email + '\n' +
@@ -117,7 +117,7 @@ module.exports = async (req, res) => {
     '<h2 style="color:#1b3a5c;margin-top:0;">✅ Application Received</h2>' +
     '<p style="color:#666;line-height:1.6;">Thank you, <strong>' + safeName + '</strong>.<br>' +
     'We will contact you at <strong>' + safeEmail + '</strong> within 24–48 hours.</p>' +
-    '<p style="color:#999;font-size:13px;">Oakwood Property Management · Equal Housing Opportunity</p>' +
+    '<p style="color:#999;font-size:13px;">Oakwood Properties · Equal Housing Opportunity</p>' +
     '</div></body></html>'
   );
 };
